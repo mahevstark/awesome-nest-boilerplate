@@ -1,6 +1,6 @@
 import { Transform, TransformationType } from 'class-transformer';
 import { parsePhoneNumber } from 'libphonenumber-js';
-import { castArray, isArray, isNil, map, trim } from 'lodash';
+import { castArray, isArray, map, trim } from 'lodash';
 
 import { GeneratorProvider } from '../providers';
 

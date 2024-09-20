@@ -1,10 +1,10 @@
 import {
-  Controller,
-  Get,
-  HttpCode,
-  HttpStatus,
-  Query,
-  ValidationPipe,
+    Controller,
+    Get,
+    HttpCode,
+    HttpStatus,
+    Query,
+    ValidationPipe,
 } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
@@ -21,48 +21,48 @@ import { UserService } from './user.service';
 @Controller('users')
 @ApiTags('users')
 export class UserController {
-  constructor(
-    private userService: UserService,
-    private readonly translationService: TranslationService,
-  ) {}
+    constructor(
+        private userService: UserService,
+        private readonly translationService: TranslationService,
+    ) { }
 
-  @Get('admin')
-  @Auth([RoleType.USER])
-  @HttpCode(HttpStatus.OK)
-  @UseLanguageInterceptor()
-  async admin(@AuthUser() user: UserEntity) {
-    const translation = await this.translationService.translate(
-      'admin.keywords.admin',
-    );
+    @Get('admin')
+    @Auth([RoleType.USER])
+    @HttpCode(HttpStatus.OK)
+    @UseLanguageInterceptor()
+    async admin(@AuthUser() user: UserEntity) {
+        const translation = await this.translationService.translate(
+            'admin.keywords.admin',
+        );
 
-    return {
-      text: `${translation} ${user.firstName}`,
-    };
-  }
+        return {
+            text: `${translation} ${user.firstName}`,
+        };
+    }
 
-  @Get()
-  @Auth([RoleType.USER])
-  @HttpCode(HttpStatus.OK)
-  @ApiPageResponse({
-    description: 'Get users list',
-    type: PageDto,
-  })
-  getUsers(
-    @Query(new ValidationPipe({ transform: true }))
-    pageOptionsDto: UsersPageOptionsDto,
-  ): Promise<PageDto<UserDto>> {
-    return this.userService.getUsers(pageOptionsDto);
-  }
+    @Get()
+    @Auth([RoleType.USER])
+    @HttpCode(HttpStatus.OK)
+    @ApiPageResponse({
+        description: 'Get users list',
+        type: PageDto,
+    })
+    getUsers(
+        @Query(new ValidationPipe({ transform: true }))
+        pageOptionsDto: UsersPageOptionsDto,
+    ): Promise<PageDto<UserDto>> {
+        return this.userService.getUsers(pageOptionsDto);
+    }
 
-  @Get(':id')
-  @Auth([RoleType.USER])
-  @HttpCode(HttpStatus.OK)
-  @ApiResponse({
-    status: HttpStatus.OK,
-    description: 'Get users list',
-    type: UserDto,
-  })
-  getUser(@UUIDParam('id') userId: Uuid): Promise<UserDto> {
-    return this.userService.getUser(userId);
-  }
+    @Get(':id')
+    @Auth([RoleType.USER])
+    @HttpCode(HttpStatus.OK)
+    @ApiResponse({
+        status: HttpStatus.OK,
+        description: 'Get users list',
+        type: UserDto,
+    })
+    getUser(@UUIDParam('id') userId: Uuid): Promise<UserDto> {
+        return this.userService.getUser(userId);
+    }
 }

@@ -22,12 +22,14 @@ import { PostModule } from './modules/post/post.module';
 import { UserModule } from './modules/user/user.module';
 import { ApiConfigService } from './shared/services/api-config.service';
 import { SharedModule } from './shared/shared.module';
+import { QuestionModule } from './modules/questions/question.module';
 
 @Module({
   imports: [
     AuthModule,
     UserModule,
     PostModule,
+    QuestionModule,
     ClsModule.forRoot({
       global: true,
       middleware: {

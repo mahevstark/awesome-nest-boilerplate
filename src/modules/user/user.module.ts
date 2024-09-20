@@ -10,9 +10,9 @@ import { UserSettingsEntity } from './user-settings.entity';
 const handlers = [CreateSettingsHandler];
 
 @Module({
-  imports: [TypeOrmModule.forFeature([UserEntity, UserSettingsEntity])],
-  controllers: [UserController],
-  exports: [UserService],
-  providers: [UserService, ...handlers],
+    imports: [TypeOrmModule.forFeature([UserEntity, UserSettingsEntity])],
+    controllers: [UserController],
+    exports: [UserService],
+    providers: [UserService, ...handlers],
 })
-export class UserModule {}
+export class UserModule { }

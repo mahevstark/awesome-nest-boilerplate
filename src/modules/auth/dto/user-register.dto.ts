@@ -1,23 +1,23 @@
 import {
-  EmailField,
-  PasswordField,
-  PhoneFieldOptional,
-  StringField,
+    EmailField,
+    PasswordField,
+    PhoneFieldOptional,
+    StringField,
 } from '../../../decorators';
 
 export class UserRegisterDto {
-  @StringField()
-  readonly firstName!: string;
+    @StringField()
+    readonly firstName!: string;
 
-  @StringField()
-  readonly lastName!: string;
+    @StringField()
+    readonly lastName!: string;
 
-  @EmailField()
-  readonly email!: string;
+    @EmailField()
+    readonly email!: string;
 
-  @PasswordField({ minLength: 6 })
-  readonly password!: string;
+    @PasswordField({ minLength: 6 })
+    readonly password!: string;
 
-  @PhoneFieldOptional()
-  phone?: string;
+    @PhoneFieldOptional()
+    phone?: string;
 }
